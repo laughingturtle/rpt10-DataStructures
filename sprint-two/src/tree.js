@@ -3,20 +3,67 @@ var Tree = function(value) {
   newTree.value = value;
 
   // your code here
-  newTree.children = null;  // fix me
+  newTree.children = [];  // fix me ?
 
+  extend(newTree, treeMethods);
+ // console.log(newTree);
   return newTree;
 };
 
+//  newTree1 {value: "cat", children: [
+//    newTree2 {value: "kitten", children: []},
+//    node {value: "kitten2", children: [
+//      node2 {value: "kitten's child", childrens: []}
+//  ]}
+//]}
+//  what tree are we on, get that tree and append to child
+//
+//  const tree1 = new Tree("cat")  <-- -but functional shared
+//  const tree2 = new Tree("kitten")
+//  tree1.addChild(tree2);
+//  const node = new Tree("kitten2");
+//  tree1.addChild(node);
+//  const node2 = new Tree("kitten's child");
+//  node.addChild(node2);
+
+var extend = function(newTree, methods){
+  for(var key in methods){
+    newTree[key] = methods[key];
+  }
+}
 var treeMethods = {};
 
 treeMethods.addChild = function(value) {
+  const node = Object.create(Tree(value)); // {value: bluefish, children: []}
+  this.children.push(node);
 };
 
 treeMethods.contains = function(target) {
+  let result = false;
+  var context = this;
+
+    function traverse(node){
+      console.log('node = ', node);
+      //console.log('node value = ', node.value);
+      console.log('node children value = ', node.children[0].value);
+      console.log('node.children.length = ', node.children.length);
+
+      if(node.children[0].value === target){
+        result = true;
+        return;
+      }
+      if (node.children.length < 1){
+        return;
+      }
+    //   return traverse(node);
+      }
+    traverse(context);
+    return result;
 };
 
-
+//  const node1 = Tree("parent");
+//  node1.addChild("bluefish");
+//  node1.contains("bluefish");
 
 /*
  * Complexity: What is the time complexity of the above functions?
