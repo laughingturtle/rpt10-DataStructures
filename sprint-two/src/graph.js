@@ -1,11 +1,29 @@
+// option 1
+// {value: 'val', {fromNode: 'val', toNode:'val' }}
+
+// option 2
+// node = [];
+// edges = [];
+
+// option 3
+// {value: 'val', [fromNode, toNode]}, 
+
 
 
 // Instantiate a new graph
 var Graph = function() {
+    this.newGraph = {};
+    this.vertice = null; // this is the node
+    this.edges = null; // this is the line, or edge, or pointer
+
+   // this.newGraph.node = [];
 };
 
 // Add a node to the graph, passing in the node's value.
 Graph.prototype.addNode = function(node) {
+  //this.storage = node;
+  this.newGraph[node] = {edges:{}};
+  console.log(this.newGraph);
 };
 
 // Return a boolean value indicating if the value passed to contains is represented in the graph.
