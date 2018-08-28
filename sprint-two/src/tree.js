@@ -10,22 +10,6 @@ var Tree = function(value) {
   return newTree;
 };
 
-//  newTree1 {value: "cat", children: [
-//    newTree2 {value: "kitten", children: []},
-//    node {value: "kitten2", children: [
-//      node2 {value: "kitten's child", childrens: []}
-//  ]}
-//]}
-//  what tree are we on, get that tree and append to child
-//
-//  const tree1 = new Tree("cat")  <-- -but functional shared
-//  const tree2 = new Tree("kitten")
-//  tree1.addChild(tree2);
-//  const node = new Tree("kitten2");
-//  tree1.addChild(node);
-//  const node2 = new Tree("kitten's child");
-//  node.addChild(node2);
-
 var extend = function(newTree, methods){
   for(var key in methods){
     newTree[key] = methods[key];
@@ -43,20 +27,14 @@ treeMethods.contains = function(target) {
   var context = this;
 
     function traverse(node){
-      console.log('node = ', node);
-      //console.log('node value = ', node.value);
-      console.log('node children value = ', node.children[0].value);
-      console.log('node.children.length = ', node.children.length);
-
-      if(node.children[0].value === target){
+      if(node.value === target){
         result = true;
         return;
       }
-      if (node.children.length < 1){
-        return;
+      for (var i = 0; i < node.children.length; i++) {
+        traverse(node.children[i]);
       }
-    //   return traverse(node);
-      }
+    }
     traverse(context);
     return result;
 };
@@ -68,3 +46,19 @@ treeMethods.contains = function(target) {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+
+ //  newTree1 {value: "cat", children: [
+//    newTree2 {value: "kitten", children: []},
+//    node {value: "kitten2", children: [
+//      node2 {value: "kitten's child", children: []}
+//  ]}
+//]}
+//  what tree are we on, get that tree and append to child
+//
+//  const tree1 = new Tree("cat")  <-- -but functional shared
+//  const tree2 = new Tree("kitten")
+//  tree1.addChild(tree2);
+//  const node = new Tree("kitten2");
+//  tree1.addChild(node);
+//  const node2 = new Tree("kitten's child");
+//  node.addChild(node2);
