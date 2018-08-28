@@ -28,6 +28,9 @@ var LimitedArray = function(limit) {
       callback(storage[i], i, storage);
     }
   };
+  limitedArray.all = function(){
+    return storage;
+  }
 
   var checkLimit = function(index) {
     if (typeof index !== 'number') {
@@ -57,3 +60,4 @@ var getIndexBelowMaxForKey = function(str, max) {
 /*
  * Complexity: What is the time complexity of the above functions?
  */
+
