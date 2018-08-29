@@ -1,14 +1,13 @@
-// Time Complexity =
 var BinarySearchTree = function(value) {
-    var currentNode = Object.create(bstMethods);
+    var currentNode = Object.create(binarySearchTreeMethods);
     currentNode.value = value;
     currentNode.left = undefined;
     currentNode.right = undefined;
     return currentNode;
 }
 
-var bstMethods = {
-    // Time Complexity 
+var binarySearchTreeMethods = {
+    // Time Complexity = Θ(log(n) avg case / O(n) worst case
     insert: function(value){
         var newNode = BinarySearchTree(value);
 
@@ -28,7 +27,7 @@ var bstMethods = {
         console.log('this = ', this);
         recurse(this);
     },
-    // Time Complexity =
+    // Time Complexity = Θ(log(n) avg case / O(n) worst case
     contains: function(value){
         var doesContain = false;
 
@@ -45,7 +44,7 @@ var bstMethods = {
         return doesContain;
     },
 
-    // Time Complexity =
+    // Time Complexity = Θ(log(n) avg case / O(n) worst case
     depthFirstLog: function(cb){
         function recurse(node) {
             cb.call(node, node.value)
