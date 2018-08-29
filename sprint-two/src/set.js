@@ -6,10 +6,12 @@ var Set = function() {
 
 var setPrototype = {};
 
+// Time Complexity = 0(1) 
 setPrototype.add = function(item) {
   this._storage[item] = item;
 };
 
+// Time Complexity = 0(n) 
 setPrototype.contains = function(item) {
   if(this._storage.hasOwnProperty(item)){
     return true;
@@ -17,11 +19,12 @@ setPrototype.contains = function(item) {
   return false;
 };
 
+// Time Complexity = Scott thinks 0(1), Malcolm thinks 0(n)
 setPrototype.remove = function(item) {
 if(this._storage[item]) {
   delete this._storage[item];
 }
-  console.log('set - after delete = ', this._storage[item]);
+ // console.log('set - after delete = ', this._storage[item]);
 };
 
 
