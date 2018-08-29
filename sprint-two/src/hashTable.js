@@ -14,6 +14,7 @@ var HashTable = function() {
   this._storage = LimitedArray(this._limit);
 };
 
+// Time Complexity = 0(1) 
 HashTable.prototype.insert = function(k, v) {
   var index = getIndexBelowMaxForKey(k, this._limit);
   var bucket = this._storage.get(index);
@@ -21,20 +22,13 @@ HashTable.prototype.insert = function(k, v) {
   if(!bucket){
     bucket = [];
     bucket.push([k,v]);
-  } else {
-    // check if k exists in any tuple[0] position, if k exists, get bucket position and replace key and value (k, v)
-    //for (var i = 0; i < bucket.length; i++) {
-
-    bucket.push([k,v]);
+  } else { 
+   bucket.push([k,v]);
   }
   this._storage.set(index, bucket);
-
-  // console.log('k = ', k);
-  // console.log('v = ', v);
-  // console.log('bucket =', bucket);
-  // console.log('storage', this._storage.all());
 };
 
+// Time Complexity = Malcolm thinks --> 0(1)  / Scott thinks --> 0(n)
 HashTable.prototype.retrieve = function(k) {
  //debugger;
   var index = getIndexBelowMaxForKey(k, this._limit);
@@ -47,6 +41,7 @@ HashTable.prototype.retrieve = function(k) {
    }
 };
 
+// Time Complexity = Malcolm thinks --> 0(1)  / Scott thinks --> 0(n)
 HashTable.prototype.remove = function(k) {
    // remove tuple from bucket where k exist
   var index = getIndexBelowMaxForKey(k, this._limit);
