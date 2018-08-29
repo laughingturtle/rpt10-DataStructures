@@ -22,6 +22,9 @@ HashTable.prototype.insert = function(k, v) {
     bucket = [];
     bucket.push([k,v]);
   } else {
+    // check if k exists in any tuple[0] position, if k exists, get bucket position and replace key and value (k, v)
+    //for (var i = 0; i < bucket.length; i++) {
+
     bucket.push([k,v]);
   }
   this._storage.set(index, bucket);
@@ -34,25 +37,28 @@ HashTable.prototype.insert = function(k, v) {
 
 HashTable.prototype.retrieve = function(k) {
  //debugger;
-  // look in the tuples in the buckets for k, if exist return it.
   var index = getIndexBelowMaxForKey(k, this._limit);
   var bucket = this._storage.get(index);
-  // use the get method to retrieve the value from the key passed into the parameter
-  // this._storage.get(k) should return the value (put in steven, get seagal)
-  //if(bucket) {
-   console.log(this._storage[index].get(k));
-  //};
-  //get the value from the limited array
+   for (var i = bucket.length - 1; i > -1; i--) {
+     var tuple = bucket[i];
+     if (tuple[0] === k) {
+       return tuple[1];
+     }
+   }
 };
 
 HashTable.prototype.remove = function(k) {
    // remove tuple from bucket where k exist
   var index = getIndexBelowMaxForKey(k, this._limit);
+  var bucket = this._storage.get(index);
+   for (var i = 0; i < bucket.length; i++) {
+     var tuple = bucket[i];
+     if (tuple[0] === k) {
+      tuple.splice(0,2);
+     }
+   }
+
 };
-
-// limitedArray.set(2,"fish");
-// console.log(limitedArray);
-
 
 /*
  * Complexity: What is the time complexity of the above functions?
