@@ -2,11 +2,9 @@ var Tree = function(value) {
   var newTree = {};
   newTree.value = value;
 
-  // your code here
-  newTree.children = [];  // fix me ?
+  newTree.children = [];  
 
   extend(newTree, treeMethods);
- // console.log(newTree);
   return newTree;
 };
 
@@ -17,11 +15,13 @@ var extend = function(newTree, methods){
 }
 var treeMethods = {};
 
+// Time Complexity = 0(1) 
 treeMethods.addChild = function(value) {
   const node = Object.create(Tree(value)); // {value: bluefish, children: []}
   this.children.push(node);
 };
 
+// Time Complexity = 0(n) 
 treeMethods.contains = function(target) {
   let result = false;
   var context = this;
