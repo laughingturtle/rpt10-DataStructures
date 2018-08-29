@@ -15,10 +15,8 @@ var LinkedList = function() {
   list.head = null;
   list.tail = null;
 
+  // ** Time Complexity of addToTail = constant O(1) ** <--- !
   list.addToTail = function(value) {
-    // create a new node instance
-    // check if first node in list, head null will point to this node, node will point to null
-
     var newNode = Node(value);
     if(!list.head){
       list.head = newNode;
@@ -27,10 +25,9 @@ var LinkedList = function() {
       list.tail.next = newNode;
       list.tail = newNode;
     }
-  //  console.log('my tail = ', list.tail);
-  //  console.log('my var = ', newNode);
   };
-   // ** Time Complexity of addToTail = constant ** <--- !
+
+// ** Time Complexity of addToTail = constant O(1) ** <--- !
 
   list.removeHead = function() {
     if (!list.head) {
@@ -42,10 +39,9 @@ var LinkedList = function() {
      return temp;
     }
   };
-  // ** Time Complexity of removeHead = constant ** <--- !
+  // ** Time Complexity of addToTail = constant O(n) ** <--- !
 
   list.contains = function(target){
-  // iterate through the values and compare target to the values. Return true if target matches a value.
     let result = false;
 
     function search(node){
@@ -61,7 +57,7 @@ var LinkedList = function() {
     search(this.head);
     return result;
   };
-  // ** Time Complexity of contains = linear **  <--- !
+
   return list;
 };
 
