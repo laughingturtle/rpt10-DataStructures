@@ -11,7 +11,7 @@ var binarySearchTreeMethods = {
     insert: function(value){
         var newNode = BinarySearchTree(value);
 
-    debugger;
+    //debugger;
         function recurse(node) {
           if (node.value > value && node.left === undefined) {
             node.left = newNode;
